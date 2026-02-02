@@ -6,18 +6,23 @@
 double integrate1(Range rng)
 {
   
-  /* Fill in for Part 1 */
-  // calculate the numerical integration of the function func
-  // based on the three attributes (`lowerlimit`, `upperlimit`, and `intervals`) of the type `Range`.
-  // the return value of function `integrate1` should be the numerical integration (return type is double)  
-  return 0.0;
+  
+  double lower = rng.lowerlimit;  //PULLING LOWER LIMIT FROM THE RANGE STRUCTURE
+  double upper = rng.upperlimit;  //PULLING UPPER LIMIT FROM THE RANGE STRUCTURE
+  int n = rng.intervals;  //PULLING INTERVAL VALUE FROM RANGE 
+
+  double step = (upper - lower) / n;  //CREATING STEP SIZE 
+
+  double sum = 0.0; //SUM VARIABEL IS WHATS STORING THE INTEGRATION
+  for(int i = 0; i < n; i++ ){  //FOR FUNCTION TO ITERATIE THROUGH INTERVALS
+    double x = lower + i * step;  //MAKING X TO RUN THRU FUNCTION
+    sum += func(x);
+
+  }
+  return sum * step;
 }
 
 void integrate2(RangeAnswer * rngans)
 {
-  /* Fill in for Part 2 */
-  // run `integrate1` function
-  // take the return value from `integrate1` function 
-  // and assign it to attribute `answer` of the type `RangeAnswer`
- 
+  rngans->answer = integrate1(rngans->rng); //POINTER FOR RANGEANSWER TO CALL INTEGRATE1 TO STORE INTEGRAL IN THE STRUCT
 }
